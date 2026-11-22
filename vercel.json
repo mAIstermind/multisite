@@ -1,16 +1,29 @@
 {
-  "cleanUrls": false,
-  "trailingSlash": false,
-  "rewrites": [],
-  "headers": [
-    {
-      "source": "/(.*).html",
-      "headers": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "app": {
+      "root": ".",
+      "framework": "nextjs"
+    },
+    "realai-app": {
+      "root": "public/realai-elite-legacy/realai-app",
+      "framework": "vite",
+      "bindings": [
         {
-          "key": "Content-Type",
-          "value": "text/html"
+          "type": "service",
+          "service": "app",
+          "format": "url",
+          "env": "APP_URL"
         }
       ]
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "app"
+      }
     }
   ]
 }

@@ -36,7 +36,7 @@ function saveIdentity() {
 
 async function fetchLeads() {
     try {
-        const response = await fetch('http://localhost:3000/api/leads');
+        const response = await fetch(`${import.meta.env.VITE_APP_URL || 'http://localhost:3000'}/api/leads`);
         const leads = await response.json();
         renderDashboard(leads);
     } catch (error) {
@@ -98,7 +98,7 @@ function setupIngester() {
         resultDiv.classList.remove('hidden');
 
         try {
-            const res = await fetch('http://localhost:3000/api/ingest', {
+            const res = await fetch(`${import.meta.env.VITE_APP_URL || 'http://localhost:3000'}/api/ingest`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ type: 'text', content })
@@ -219,7 +219,7 @@ function renderKanban(leads) {
 
 // Make globally available for inline onclicks (hacky for MVP)
 window.moveToKanban = async (id, status) => {
-    await fetch(`http://localhost:3000/api/leads/${id}/status`, {
+    await fetch(`${import.meta.env.VITE_APP_URL || 'http://localhost:3000'}/api/leads/${id}/status`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })
