@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Elite - RealAi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F3F4F6;
+            color: #111827;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #E5E7EB;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -40px auto 60px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h2 {
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: #2563EB;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .help-text {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #2563EB;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .range-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .btn-submit {
+            background: #10B981;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #059669;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>You’re In. Welcome to the Elite.</h1>
+        <p>Congratulations! You’ve just secured one of our 10 Founder’s Beta slots. While other agents are manually chasing tire-kickers, your agency is now officially powered by a 24/7 "Property-Aware" brain.</p>
+    </header>
+
+    <div class="container">
+        <p style="margin-bottom: 30px; font-size: 1.1rem;">
+            Your "Agent OS" architecture is secured. Now, let's initialize your account.
+            <br><br>
+            <strong>Next Steps:</strong> Please perform this initial self-setup. Once completed, your AI Dashboard will be ready for active property learning.
+        </p>
+
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            
+            <div style="background: #F0F9FF; padding: 30px; border-radius: 12px; border: 1px solid #BAE6FD; text-align: left; margin-bottom: 40px;">
+                <h2 style="margin-top: 0; color: #0284C7; border-bottom: none;">🚀 Quick Start Guide</h2>
+                <ul style="margin: 0; padding-left: 20px; color: #0C4A6E; font-size: 1.1rem; line-height: 1.8;">
+                    <li style="margin-bottom: 15px;"><strong>Step 1:</strong> Click the button below to access the <strong>Agent OS Portal</strong>.</li>
+                    <li style="margin-bottom: 15px;"><strong>Step 2:</strong> Register/Login using the email you used for payment.</li>
+                    <li style="margin-bottom: 15px;"><strong>Step 3:</strong> Navigate to <strong>"Property Brain"</strong> to upload your first listing URL.</li>
+                    <li><strong>Step 4:</strong> Test your new concierge immediately in the preview window.</li>
+                </ul>
+            </div>
+
+            <a href="https://realai-estateguard.vercel.app/" class="btn-submit" style="display: inline-block; text-decoration: none; max-width: 400px; box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);">
+                Access Agent OS Portal &rarr;
+            </a>
+
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #6B7280;">
+                <i class="fas fa-lock"></i> Your account status is verified via Stripe.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('onboardingForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop default Formspree submit (which fails if no ID)
+            
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerText;
+            
+            // 1. UI Feedback
+            btn.innerText = "Initializing Account...";
+            btn.style.background = "#6B7280"; // Grey out
+            btn.disabled = true;
+
+            // 2. Simulate Delay (or actual fetch if we had a real backend)
+            setTimeout(() => {
+                // 3. Force Redirect
+                window.location.href = "https://realai-estateguard.vercel.app/";
+            }, 1500);
+        });
+    </script>
+    </div>
+
+</body>
+</html>

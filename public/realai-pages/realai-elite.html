@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealAi Elite - The Agent OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #101828; 
+            --accent: #2563EB;
+            --text-main: #1D2939;
+            --text-sub: #475467;
+            --bg-light: #F9FAFB;
+            --white: #ffffff;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background: var(--white);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* BTN UTILS */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-dark { background: var(--primary); color: white; }
+        .btn:hover { transform: translateY(-2px); }
+
+        /* HERO - Screenshot 5 */
+        .hero {
+            position: relative;
+            padding: 120px 0 160px;
+            text-align: center;
+            /* background: removed in favor of video element */
+        }
+        
+        .nav-login {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--primary);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* VIDEO SECTION - Screenshot 5/4 */
+        .video-section {
+            background: #101828;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            margin-top: -60px; /* Overlap hero */
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* FEATURES - Screenshot 3/4 */
+        .features-section {
+            padding: 80px 0; /* Reduced padding */
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            /* Reduced minmax to ensuring 3 fit even on smaller desktops */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; /* Reduced gap */
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 30px; /* Reduced padding */
+            border-radius: 16px;
+            border: 1px solid #EAECF0;
+            text-align: left;
+            box-shadow: 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-box:hover { transform: translateY(-5px); box-shadow: 0 12px 16px -4px rgba(16, 24, 40, 0.08); }
+
+        .f-icon { font-size: 2rem; margin-bottom: 20px; display: block; }
+
+        /* DASHBOARD PREVIEW */
+        .dashboard-preview {
+            background: #101828;
+            padding: 80px 0;
+            text-align: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* STEPS SECTION */
+        .steps-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .step-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .step-circle {
+            background: var(--accent);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* PRICING SECTION */
+        .pricing-section {
+            padding: 100px 0;
+            background: white;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pricing-card {
+            background: #101828;
+            color: white;
+            padding: 60px 40px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .special-badge {
+            background: #10B981;
+            color: #064E3B;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .price-large { font-size: 5rem; font-weight: 800; line-height: 1; margin: 10px 0; }
+        .price-sub { font-size: 1.2rem; display: block; margin-bottom: 30px; color: #94A3B8; }
+
+        .check-list {
+            text-align: left;
+            margin: 40px auto;
+            max-width: 350px;
+            list-style: none;
+        }
+
+        .check-list li {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .check-list i { color: #10B981; }
+
+        .cta-btn {
+            background: #2563EB;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition:  background 0.2s;
+        }
+        .cta-btn:hover { background: #1d4ed8; }
+
+        footer { text-align: center; padding: 40px; color: #667085; font-size: 0.9rem; }
+
+        /* HEADER */
+        .hero {
+            position: relative;
+            padding: 120px 0 160px;
+            text-align: center;
+        }
+        
+        /* Login removed */
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--primary);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    /* ... */
+    </style>
+</head>
+<body>
+
+    <!-- HERO (Screenshot 5) -->
+    <header class="hero">
+        <!-- Video Background -->
+        <div class="video-bg-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1;">
+             <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="/realai-pages/images/house-flyby.mp4" type="video/mp4">
+             </video>
+             <!-- Overlay: Reduced opacity to 0.4 so video is visible -->
+             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.6));"></div>
+        </div>
+
+        <div class="container">
+            <!-- LOGO IMAGE (Replacing 'A' Block) -->
+            <div style="margin: 0 auto 30px;">
+                <img src="/realai-pages/images/realai-logo.png" alt="RealAi Elite" style="height: 80px; width: auto; display: block; margin: 0 auto;">
+            </div>
+            
+            <h1 class="fade-up">The World's First AI Assistant that <span style="color: var(--accent);">actually</span> reads your property files.</h1>
+            <p class="fade-up">It answers buyer questions, captures contact info, and pings you immediately after pre-qualifying the lead for you.</p>
+        </div>
+    </header>
+
+    <!-- PRESENTATION SLIDES (The "Why" Carousel) -->
+    <section class="presentation-section" style="background: #0f172a; padding: 40px 0; position: relative;">
+        <div class="container" style="position: relative;">
+            <p class="fade-up" style="text-align: center; color: #94A3B8; font-size: 0.9rem; margin-bottom: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">
+                The Reality of the Modern Market
+            </p>
+
+            <!-- Navigation Buttons -->
+            <button id="presSlideLeft" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 20; background: rgba(255, 255, 255, 0.9); color: #1e293b; border: 1px solid #cbd5e1; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <button id="presSlideRight" class="pulse-btn" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 20; background: #D4AF37; color: black; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 20px rgba(212,175,55,0.5); display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-arrow-right" style="font-size: 1.2rem;"></i>
+            </button>
+
+            <style>
+                @keyframes pulse-gold {
+                    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); transform: translateY(-50%) scale(1); }
+                    70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); transform: translateY(-50%) scale(1.1); }
+                    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); transform: translateY(-50%) scale(1); }
+                }
+                .pulse-btn {
+                    animation: pulse-gold 2s infinite;
+                }
+                .pulse-btn:hover {
+                    animation: none;
+                    transform: translateY(-50%) scale(1.1) !important;
+                }
+            </style>
+
+            <!-- Carousel Container -->
+            <div id="presCarouselContainer" class="carousel-container" style="overflow-x: auto; white-space: nowrap; padding-bottom: 20px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; display: flex; gap: 30px; scroll-behavior: smooth;">
+                
+                <!-- Slide 1b -->
+                <img src="/realai-pages/images/presentation%20Slide%201b%20The%20Reality%20of%20the%20Modern%20Agent.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+                
+                <!-- Slide 1c -->
+                <img src="/realai-pages/images/presentation%20Slide%201c%20The%20Reality%20of%20the%20Modern%20Agent.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 2 -->
+                <img src="/realai-pages/images/presentation%20Slide%202%20The%20Time%20Waster%20Dilemma.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 2b -->
+                <img src="/realai-pages/images/presentation%20Slide%202b%20The%20Time%20Waster%20Dilemma.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 3 -->
+                <img src="/realai-pages/images/presentation%20Slide%203%20The%20Repetitive%20Inquiry%20Trap.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 3b -->
+                <img src="/realai-pages/images/presentation%20Slide%203b%20The%20Repetitive%20Inquiry%20Trap.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 4 -->
+                <img src="/realai-pages/images/presentation%20Slide%204%20The%20Hyper-Local%20Knowledge%20Gap.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 4b -->
+                <img src="/realai-pages/images/presentation%20Slide%204b%20The%20Hyper-Local%20Knowledge%20Gap.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 5b -->
+                <img src="/realai-pages/images/presentation%20Slide%205b%20The%20Speed%20to%20Lead%20Failure.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 5c -->
+                <img src="/realai-pages/images/presentation%20Slide%205c%20The%20Speed%20to%20Lead%20Failure.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 6b -->
+                <img src="/realai-pages/images/presentation%20Slide%206b%20The%20Solution%20–%20Your%20PWA%20&%20Chatbot.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+                <!-- Slide 6d (Fixed encoding for endash/hyphen) -->
+                <img src="/realai-pages/images/presentation%20Slide%206d%20The%20Solution%20–%20Your%20PWA%20&%20Chatbot.jpg" 
+                     class="carousel-item shadow-2xl" 
+                     style="display: inline-block; height: 500px; max-height: 70vh; width: auto; border-radius: 12px; scroll-snap-align: center; border: 1px solid #334155;">
+
+            </div>
+        </div>
+    </section>
+    <section class="features-section">
+        <div class="container">
+            <h2 class="fade-up" style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">Inside the Agent OS</h2>
+            
+            <div class="features-grid">
+                <div class="feature-box card-anim">
+                    <span class="f-icon">🧠</span>
+                    <h3>Knows the Details</h3>
+                    <p style="color: var(--text-sub); margin-top: 10px;">Verified accuracy based on your specific files. Unlike generic bots, this one scans your specific PDFs, URLs, and floor plans.</p>
+                </div>
+                <div class="feature-box card-anim">
+                    <span class="f-icon">🔐</span>
+                    <h3>The VIP Unlock</h3>
+                    <p style="color: var(--text-sub); margin-top: 10px;">Instead of a cold contact form, our AI offers to 'Unlock the Property Vault'. It provides a valuable teaser first, then secures the lead.</p>
+                </div>
+                <div class="feature-box card-anim">
+                    <span class="f-icon">📲</span>
+                    <h3>Real-time lead alerts</h3>
+                    <p style="color: var(--text-sub); margin-top: 10px;">The second a user asks a viewing, you get a push notification on your phone with the full chat transcript.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD PREVIEW (Horizontal Carousel) -->
+    <section class="dashboard-preview" style="position: relative;">
+        <div class="container" style="position: relative;">
+            
+            <!-- Navigation Buttons -->
+            <button id="slideLeft" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="slideRight" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Carousel Container -->
+            <div id="carouselContainer" class="carousel-container" style="overflow-x: auto; white-space: nowrap; padding-bottom: 20px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; display: flex; gap: 20px; scroll-behavior: smooth;">
+                <!-- Slide 1 -->
+                <img src="/realai-pages/images/elite-slide-1.png" alt="Agent OS Dashboard" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 2 -->
+                <img src="/realai-pages/images/elite-slide-2.png" alt="Command Center" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 3 -->
+                <img src="/realai-pages/images/elite-slide-3.png" alt="Portfolio Control" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 4 -->
+                <img src="/realai-pages/images/elite-slide-4.png" alt="Business Data" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 5 -->
+                <img src="/realai-pages/images/elite-slide-5.png" alt="Identity & Branding" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 6 -->
+                <img src="/realai-pages/images/elite-slide-6.png" alt="Slide 6" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 7 -->
+                <img src="/realai-pages/images/elite-slide-7.png" alt="Slide 7" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 8 -->
+                <img src="/realai-pages/images/elite-slide-8.png" alt="Slide 8" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+                <!-- Slide 9 -->
+                <img src="/realai-pages/images/elite-slide-9.png" alt="Slide 9" class="carousel-item shadow-2xl" style="display: inline-block; width: 85%; max-width: 1000px; border-radius: 12px; scroll-snap-align: center; border: 4px solid #334155;">
+            </div>
+            <p style="text-align: center; color: #94A3B8; font-size: 0.9rem; margin-top: 10px;">
+                <i class="fas fa-hand-pointer"></i> Swipe or use arrows to explore
+            </p>
+        </div>
+    </section>
+
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .carousel-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+
+    <!-- STEPS (Screenshot 2) -->
+    <section class="steps-section">
+        <div class="container">
+            <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 60px; color: var(--primary);">From Listing to Lead in 3 Simple Steps</h2>
+            
+            <div class="step-row slide-in">
+                <div class="step-circle">1</div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Paste any URL to Build the Brain</h3>
+                    <p style="color: var(--text-sub);">Stop manually answering the same questions. Simply send us your listing URLs, PDFs, or even a quick voice memo. We upload them into your AI's "Property Vault," creating a custom knowledge base.</p>
+                </div>
+            </div>
+            
+            <div class="step-row slide-in">
+                <div class="step-circle">2</div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">The "Helpful Gatekeeper" Chatbot</h3>
+                    <p style="color: var(--text-sub);">We embed a sleek, professional concierge on your website. When a buyer asks a specific question, the AI provides a helpful "teaser" answer. It then politely offers the full spec sheet in exchange for their name and phone number.</p>
+                </div>
+            </div>
+
+            <div class="step-row slide-in">
+                <div class="step-circle">3</div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Instant Lead Alerts</h3>
+                    <p style="color: var(--text-sub);">The moment a buyer identifies themselves, the "Qualification Gate" opens. The AI provides them with the deep data, while simultaneously sending a push notification to your phone with the full transcript.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING (Screenshot 1) -->
+    <section class="pricing-section">
+        <div class="container" style="max-width: 1200px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                
+                <!-- Card 1: The Jumpstart (Standard) -->
+                <div class="pricing-card scale-up">
+                    <div class="special-badge" style="background: #e11d48; color: white;">VALENTINE SPECIAL</div>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 10px;">The "Jumpstart" Package</h2>
+                    <p style="color: #94A3B8; text-decoration: line-through;">Standard: $1,997 Setup + $299/mo</p>
+                    
+                    <div class="price-large">$495 <span style="font-size: 1.5rem; font-weight: 500; color: #CBD5E1;">One-time Setup</span></div>
+                    <span class="price-sub">Then $149/mo (Locked In For Life)</span>
+
+                    <p style="font-size: 0.9rem; color: #CBD5E1; max-width: 400px; margin: 0 auto; line-height: 1.4; min-height: 2.5em;">
+                        &nbsp; <!-- Spacer to keep alignment -->
+                    </p>
+
+                    <ul class="check-list">
+                        <li><i class="fas fa-check"></i> Full "Property Brain" Setup</li>
+                        <li><i class="fas fa-check"></i> Self-Service Data Entry</li>
+                        <li><i class="fas fa-check"></i> Up to 50 Document Sources</li>
+                        <li><i class="fas fa-check"></i> Smart Lead Gating Logic</li>
+                        <li><i class="fas fa-check"></i> Real-time Lead Alerts</li>
+                    </ul>
+
+                    <a href="https://buy.stripe.com/5kQaEX4SD8xNemUfOd7Zu1z" class="cta-btn" style="text-decoration: none; display: inline-block;">
+                        💘 Claim Valentine Special →
+                    </a>
+                    <p style="margin-top: 20px; font-size: 0.85rem; color: #64748B;">Offer ends Feb 14th</p>
+                </div>
+
+                <!-- Card 2: The Lifetime (Pink/Hearts) -->
+                <div class="pricing-card scale-up" style="border: 2px solid #f9a8d4; background: linear-gradient(145deg, #1e1e24 0%, #301018 100%); position: relative; overflow: hidden;">
+                    
+                    <!-- CSS Hearts Background -->
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; pointer-events: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><path fill=%22%23ff0000%22 d=%22M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z%22/></svg>'); background-size: 40px 40px;"></div>
+
+                    <div class="special-badge" style="background: #be185d; color: white; box-shadow: 0 0 15px #be185d;">VALENTINE LAUNCH SPECIAL</div>
+                    
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 10px; color: #fbcfe8;">Lifetime Access</h2>
+                    <p style="color: #fda4af;">One-Time Only Opportunity</p>
+                    
+                    <div class="price-large" style="color: #f472b6;">$5,000 <span style="font-size: 1.5rem; font-weight: 500; color: #fbcfe8;">Flat Fee</span></div>
+                    <span class="price-sub" style="color: #fce7f3;">No Monthly Payments Ever</span>
+
+                    <p style="font-size: 0.9rem; color: #fbcfe8; max-width: 400px; margin: 0 auto; line-height: 1.4;">
+                        Own the Agent OS architecture forever. Includes priority support and early access to all future features.
+                    </p>
+
+                    <ul class="check-list">
+                        <li><i class="fas fa-heart" style="color: #ec4899;"></i> <b>Everything in Jumpstart</b></li>
+                        <li><i class="fas fa-heart" style="color: #ec4899;"></i> <b>0 Monthly Fees Forever</b></li>
+                        <li><i class="fas fa-heart" style="color: #ec4899;"></i> Priority "Red Carpet" Support</li>
+                        <li><i class="fas fa-heart" style="color: #ec4899;"></i> 290 Property Vaults</li>
+                        <li><i class="fas fa-heart" style="color: #ec4899;"></i> Full Setup Guidance</li>
+                    </ul>
+
+                    <a href="https://buy.stripe.com/eVqbJ1gBl9BRa6EatT7Zu1A" class="cta-btn" style="background: #ec4899; color: white; border: none; text-decoration: none; display: inline-block;">
+                        💎 Secure Lifetime Access →
+                    </a>
+                    <p style="margin-top: 20px; font-size: 0.85rem; color: #fda4af;">Limited Availability</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Responsive Fix for Grid -->
+    <style>
+        @media (max-width: 768px) {
+            .pricing-section .container > div {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Fix for Presentation Carousel on Mobile */
+            #presCarouselContainer .carousel-item {
+                height: 280px !important;
+                max-height: 50vh !important;
+            }
+        }
+    </style>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RealAi Elite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP SCRIPTS & ANIMATION -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // CAROUSEL LOGIC (Dashboard)
+            const container = document.getElementById('carouselContainer');
+            document.getElementById('slideLeft').addEventListener('click', () => {
+                container.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            document.getElementById('slideRight').addEventListener('click', () => {
+                container.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+
+            // CAROUSEL LOGIC (Presentation) - Updated Scroll Step
+            const presContainer = document.getElementById('presCarouselContainer');
+            // Scroll by approximate slide width + gap (approx 800px)
+            const scrollStep = 800; 
+            
+            document.getElementById('presSlideLeft').addEventListener('click', () => {
+                presContainer.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+            });
+            document.getElementById('presSlideRight').addEventListener('click', () => {
+                presContainer.scrollBy({ left: scrollStep, behavior: 'smooth' });
+            });
+
+            // 1. Hero Fade Up (Trigger on load, but robust)
+            gsap.from(".fade-up", {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power2.out"
+            });
+
+            // Common ScrollTrigger Defaults
+            // "play none none reverse" -> Plays when entering, reverses when leaving up (so it plays again when you scroll down)
+            const commonToggle = "play none none reverse"; 
+
+            // 2. Feature Cards
+            gsap.from(".card-anim", {
+                scrollTrigger: {
+                    trigger: ".features-grid",
+                    start: "top 85%", // Start earlier (when top of grid hits 85% of viewport)
+                    toggleActions: commonToggle
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.6, // Snappier
+                stagger: 0.15,
+                ease: "back.out(1.2)"
+            });
+
+            // 3. (A) Presentation Carousel Fade In
+            gsap.from("#presCarouselContainer, #presSlideLeft, #presSlideRight", {
+                scrollTrigger: {
+                    trigger: ".presentation-section",
+                    start: "top 80%",
+                    toggleActions: commonToggle
+                },
+                y: 40,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+
+            // 3. (B) Dashboard Slide Up (Specific ID)
+            gsap.from(".db-img, #carouselContainer, #slideLeft, #slideRight", { 
+                scrollTrigger: {
+                    trigger: ".dashboard-preview",
+                    start: "top 80%",
+                    toggleActions: commonToggle
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+
+            // 4. Steps Slide In
+            gsap.from(".slide-in", {
+                scrollTrigger: {
+                    trigger: ".steps-section",
+                    start: "top 80%",
+                    toggleActions: commonToggle
+                },
+                x: -30,
+                opacity: 0,
+                duration: 0.7,
+                stagger: 0.2,
+                ease: "power2.out"
+            });
+
+            // 5. Pricing Pop
+            gsap.from(".scale-up", {
+                scrollTrigger: {
+                    trigger: ".pricing-section",
+                    start: "top 80%",
+                    toggleActions: commonToggle
+                },
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.5)"
+            });
+
+            // Refresh ScrollTrigger after all assets (like video/images) load to ensure positions are correct
+            window.addEventListener("load", () => ScrollTrigger.refresh());
+        });
+    </script>
+</body>
+</html>

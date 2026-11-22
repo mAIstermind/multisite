@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/realai-elite/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RealAi-Elite: The Tire Kicker Terminator</title>
+    <link rel="stylesheet" href="/realai-elite/src/style.css" />
+  </head>
+  <body class="terminator-page">
+    <div id="app">
+        <!-- Content injected by main.js or hardcoded here for landing -->
+        <header class="hero">
+            <img src="/realai-elite/realai-logo.png" alt="RealAi-Elite" style="max-width: 250px; margin-bottom: 2rem;">
+            <h1>Stop Giving Free Tours.<br>Let AI Qualify Your Buyers While You Sleep.</h1>
+            <p class="subtext">The first "Luxury Logic" AI that filters tire-kickers from serious capital before you ever pick up the phone.</p>
+        </header>
+
+        <section class="logic-flow">
+            <!-- Visual Flow: Teaser -> Gate -> Reveal -->
+            <div class="flow-step">
+                <div class="icon">🔮</div>
+                <h3>Teaser Answer</h3>
+                <p>Bot answers 1 specific question to hook interest.</p>
+            </div>
+            <div class="arrow">⬇️</div>
+            <div class="flow-step">
+                <div class="icon">🛡️</div>
+                <h3>Qualification Gate</h3>
+                <p>"Cash or Pre-approval?" (Mandatory Check)</p>
+            </div>
+            <div class="arrow">⬇️</div>
+            <div class="flow-step">
+                <div class="icon">📂</div>
+                <h3>Data Reveal</h3>
+                <p>Full Vault Access only for qualified leads.</p>
+            </div>
+        </section>
+
+        <section class="offer-card">
+            <h2>Elite Pilot Access</h2>
+            <div class="price">$4,997/mo</div>
+            <div class="scarcity" id="city-scarcity">
+                Only 2 Slots Remaining for <span id="user-city" style="color: var(--color-gold);">Your City</span> agents
+            </div>
+            <button id="apply-btn" class="cta-btn">Claim Your Territory</button>
+        </section>
+    </div>
+    <script type="module" src="/realai-elite/src/terminator.js"></script>
+  </body>
+</html>
