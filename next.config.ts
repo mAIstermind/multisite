@@ -46,9 +46,7 @@ const nextConfig = {
       'public/content/**/*.avi',
       'public/content/**/*.pdf',
       'public/content/**/*.zip',
-      'public/realai-elite-assets/**/*', // Massive 359MB folder
-      'public/realai-elite-legacy/**/*',
-    ],
+      'public/realai-elite-assets/**/*', // Massive 359MB folder    ],
   },
   experimental: {
     // Keep this clean to avoid terminal warnings
