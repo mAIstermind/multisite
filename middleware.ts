@@ -8,6 +8,8 @@ import type { NextRequest } from 'next/server';
  */
 const EMERGENCY_MAINTENANCE_MODE = false;
 
+export const runtime = 'nodejs';
+
 export function middleware(request: NextRequest) {
   const url = request.nextUrl;
   const hostname = request.headers.get('host') || "";
