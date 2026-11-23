@@ -22,9 +22,6 @@ yarn-error.log*
 
 # Large media site folders (kept on disk, not tracked in git)
 public/content/playaphotos/
-public/content/maistermind/
-public/content/pdcyes/
-public/content/inspiringspeakerspdc/
 public/content/playavida/
 public/content/chillmasterscotland/
 public/content/breath-of-life/

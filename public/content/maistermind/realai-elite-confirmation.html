@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Onboarding - RealAi Elite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #111827; 
+            --accent: #2563EB; 
+            --text: #374151;
+            --success: #10B981;
+            --bg: #F3F4F6;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #6B7280;
+            font-size: 1.1rem;
+        }
+
+        /* FORM STYLES */
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .helper-text {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .radio-option:hover {
+            background: #F9FAFB;
+        }
+
+        .radio-option input {
+            margin-top: 4px;
+        }
+
+        .btn-submit {
+            background: var(--accent);
+            color: white;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #1D4ED8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="success-icon">🤖</div>
+            <h1>Train Your AI Concierge</h1>
+            <p class="subtitle">Complete this profile to activate your "Elite" status settings.</p>
+        </div>
+
+        <form>
+            <!-- 1. SPECIALTY -->
+            <div class="form-section">
+                <label>1. What is your primary Real Estate specialty?</label>
+                <p class="helper-text">This helps the AI understand the terminology it should use.</p>
+                <select name="specialty" required>
+                    <option value="" disabled selected>Select your focus...</option>
+                    <option value="Sales">Residential Sales</option>
+                    <option value="Rentals">High-End Rentals / Leasing</option>
+                    <option value="Commercial">Commercial / Retail</option>
+                    <option value="Land">Land & Development</option>
+                </select>
+            </div>
+
+            <!-- 2. IDENTITY -->
+            <div class="form-section">
+                <label>2. What is your "Closing Identity"?</label>
+                <p class="helper-text">How should the bot sound when pushing for the lead?</p>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="identity" value="Luxury" required>
+                        <div>
+                            <strong>Ultra-High-End Luxury</strong>
+                            <div style="font-size: 0.9rem; color:#6B7280; margin-top:4px;">"It would be my pleasure to arrange a private viewing." (Polite, distant, exclusive)</div>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="identity" value="Consultative">
+                        <div>
+                            <strong>Consultative & Helpful</strong>
+                            <div style="font-size: 0.9rem; color:#6B7280; margin-top:4px;">"I want to make sure you have all the facts before you decide." (Educational, warm)</div>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="identity" value="Aggressive">
+                        <div>
+                            <strong>Direct & Aggressive</strong>
+                            <div style="font-size: 0.9rem; color:#6B7280; margin-top:4px;">"This property is moving fast. What time can you be here?" (Urgent, sales-heavy)</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3. TOP 3 BENEFITS -->
+            <div class="form-section">
+                <label>3. The "Local Expert" Logic</label>
+                <p class="helper-text">List 3 specific benefits of your area (e.g., "Walkable to Whole Foods," "Blue Ribbon School District," "No HOA fees") used to sell EVERY listing.</p>
+                <textarea name="benefits" rows="4" placeholder="1. Benefit One...&#10;2. Benefit Two...&#10;3. Benefit Three..." required></textarea>
+            </div>
+
+            <!-- 4. ESTATE GUARD -->
+            <div class="form-section">
+                <label>4. Estate Guard™ Security Setting</label>
+                <p class="helper-text">This controls how strictly we gate information.</p>
+                <div class="radio-group">
+                    <label class="radio-option" style="background: #EEF2FF; border-color: #C7D2FE;">
+                        <input type="radio" name="security" value="on" checked>
+                        <div>
+                            <strong>Default ON (Recommended)</strong>
+                            <div style="font-size: 0.9rem; color:#6B7280; margin-top:4px;">Immediately gate specifics for any property over $5M. Requires Name/Phone to see Floor Plans.</div>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="security" value="off">
+                        <div>
+                            <strong>Default OFF</strong>
+                            <div style="font-size: 0.9rem; color:#6B7280; margin-top:4px;">Answer all questions freely. Only gate when explicitly asked for "Private Documents."</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Initialize My AI Agent &rarr;</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: #9CA3AF;">
+            Changing these settings later is easy via your Agent PWA Dashboard.
+        </p>
+
+    </div>
+
+</body>
+</html>
